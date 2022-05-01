@@ -16,9 +16,7 @@ const addToList = () => {
 };
 
 const clrList = () => {
-  for (const el of listitem) {
-    ol.removeChild(el);
-  }
+  ol.innerHtml="";
 };
 
 btn[0].addEventListener("click", addToList);
