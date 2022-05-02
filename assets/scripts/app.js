@@ -1,28 +1,30 @@
 const btn = document.getElementsByClassName("btn");
 const input = document.querySelector("#input");
-const ol = document.getElementsByClassName("list");
+const ol = document.getElementsByClassName("list")[0];
 const listitem = document.getElementsByClassName("list-item");
-
-let i = 2;
 
 const addToList = () => {
   const li = document.createElement("li");
   li.className = "list-item";
-  li.innerHTML = `${input.value} <button class="btn"/> DELETE </button>`;
-  ol[0].appendChild(li);
-  btn[i].addEventListener("click", deleteItem.bind(this, listitem[i - 2]));
-  console.log(btn[i], listitem[i - 2]);
-  i++;
+  const btn = document.createElement("button");
+  btn.classList = "list-btn";
+  btn.innerText = "DELETE";
+  li.innerText = input.value;
+  li.appendChild(btn);
+  ol.appendChild(li);
 };
 
 const clrList = () => {
-  ol.innerHtml="";
+  ol.innerHtml = "";
 };
 
 btn[0].addEventListener("click", addToList);
 btn[1].addEventListener("click", clrList);
 
-function deleteItem(ele) {
+ol.addEventListener("click", deleteItem);
+
+function deleteItem(e) {
+  const ele = e.target.closest("li");
   console.log(ele);
-  ol[0].removeChild(ele);
+  ol.removeChild(ele);
 }
